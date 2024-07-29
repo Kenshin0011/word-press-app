@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      記事一覧
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let p of posts">
+    <ion-card-header>
+      <ion-card-subtitle>
+        {{p.date | date: "yyyy年MM月dd日"}}
+      </ion-card-subtitle>
+      <ion-card-title>{{p.title}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-content>
