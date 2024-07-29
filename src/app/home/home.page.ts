@@ -30,7 +30,7 @@ export class HomePage {
       message: 'Loading...',
     });
     await loading.present();
-    this.http.get<PostsResponse>('https://public-api.wordpress.com/rest/v1.1/sites/ionicjp.wordpress.com/posts')
+    this.http.get<PostsResponse>('https://public-api.wordpress.com/rest/v1.1/sites/ionicjp.wordpress.com/posts/')
       .subscribe(data => {
         this.posts = data.posts;
         loading.dismiss();
