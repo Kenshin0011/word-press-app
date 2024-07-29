@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ParamMap} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-
-interface Post {
-  ID: number;
-  title: string;
-  content: string;
-  date: string;
-}
+import { WordpressService } from "../wordpress.service";
+import { IPost } from "../interfaces/post";
 
 @Component({
   selector: 'app-article',
@@ -16,7 +10,7 @@ interface Post {
 })
 export class ArticlePage implements OnInit {
   ID!: number;
-  post: Post = {
+  post: IPost = {
     ID: 0,
     title: '',
     content: '',
@@ -25,7 +19,7 @@ export class ArticlePage implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
-    public http: HttpClient,
+    public wordpressService: WordpressService,
   ) { }
 
   ngOnInit() {
@@ -36,7 +30,7 @@ export class ArticlePage implements OnInit {
   }
 
   ionViewDidEnter() {
-    this.http.get<Post>('https://public-api.wordpress.com/rest/v1.1/sites/ionicjp.wordpress.com/posts/' + this.ID)
+    this.wordpressService.getArticle(this.ID)
       .subscribe(data => {
         this.post = data;
       })
