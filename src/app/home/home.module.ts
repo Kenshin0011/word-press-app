@@ -6,6 +6,8 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { SharedModule } from "../shared/shared.module";
+import { RouterModule } from "@angular/router";
+import { ArticlePage } from "../article/article.page";
 
 
 @NgModule({
@@ -15,7 +17,13 @@ import { SharedModule } from "../shared/shared.module";
     IonicModule,
     HomePageRoutingModule,
     SharedModule,
+    RouterModule.forChild([
+      {
+        path: ':articleId',
+        component: ArticlePage,
+      }
+    ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, ArticlePage]
 })
 export class HomePageModule {}
